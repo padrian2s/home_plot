@@ -1,0 +1,34 @@
+#! /bin/sh
+### BEGIN INIT INFO
+# Provides:          geiger
+# Required-Start:
+# Required-Stop:
+# Default-Start:     2 3 4 5
+# Default-Stop:
+# Short-Description: executed by init(8) upon entering runlevel 1 (single).
+### END INIT INFO
+
+
+. /lib/lsb/init-functions
+
+do_start () {
+    #/usr/bin/python /home/pi/read_geiger.py &
+     /home/pi/geiger.sh
+}
+
+case "$1" in
+  start)
+    do_start
+    ;;
+  restart|reload|force-reload)
+    echo "Error: argument '$1' not supported" >&2
+    exit 3
+    ;;
+  stop)
+    echo "no kill this time"
+    ;;
+  *)
+    echo "Usage: $0 start|stop" >&2
+    exit 3
+    ;;
+esac
